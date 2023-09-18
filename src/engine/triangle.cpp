@@ -27,14 +27,14 @@ Triangle::Triangle() {
 	)";
 
 	// Create VAO
-	glGenVertexArrays(1, &VAO);
+	glGenVertexArrays(1, &m_VAO);
 	// Bind VAO
-	glBindVertexArray(VAO);
+	glBindVertexArray(m_VAO);
 
 	// Create VBO
-	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &m_VBO);
 	// Bind VBO
-	glBindBuffer(GL_ARRAY_BUFFER, VBO); // notice GL_ARRAY_BUFFER (other options available too)
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO); // notice GL_ARRAY_BUFFER (other options available too)
 
 	// Copy vertices to VBO
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW); // other options is GL_DYNAMIC draw
@@ -50,12 +50,12 @@ Triangle::Triangle() {
 	glBindVertexArray(0);
 
 	// Create and compile shaders
-	shaderProgram = CompileShaders(vShaderSrc, fShaderSrc);
+	m_program = CompileShaders(vShaderSrc, fShaderSrc);
 }
 
 void Triangle::draw() {
-	glUseProgram(shaderProgram);
-	glBindVertexArray(VAO);
+	glUseProgram(m_program);
+	glBindVertexArray(m_VAO);
 	
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 	

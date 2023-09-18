@@ -3,54 +3,62 @@
 #include "utils.h"
 #include <string.h>
 
-void AddShader(GLuint program, char* srcCode, GLenum shaderType) {
+GLuint CompileShader(char* srcCode, GLenum shaderType) {
 	GLuint shader = glCreateShader(shaderType);
 	GLint codeLength = strlen(srcCode);
 
-	glShaderSource(shader, 1, &srcCode, &codeLength); // notice address of pointer
+	glShaderSource(shader, 1, &srcCode, nullptr); // notice address of pointer
 	glCompileShader(shader);
 
-	GLint success = 0;
-	GLchar infoLog[1024] = { 0 };
-
 	// Check for errors
-	glGetProgramiv(shader, GL_COMPILE_STATUS, &success);
+	GLint success = 0;
+	glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
 	if (!success) {
-		glGetProgramInfoLog(shader, sizeof(infoLog), NULL, infoLog);
-		std::cout << "Error compiling " << shader << " program: " << infoLog << std::endl;
+		GLchar infoLog[1024] = { 0 };
+		glGetShaderInfoLog(shader, sizeof(infoLog), NULL, infoLog);
+		std::cout << "Error compiling " << (shaderType == GL_FRAGMENT_SHADER ? "Fragment Shader" : "Vertex Shader") << std::endl;
+		std::cout << infoLog << std::endl;
 		exit(1);
 	}
+
+	return shader;
 }
 
+// TODO: Rename to create shader program
 GLuint CompileShaders(char* vShaderSrc, char* fShaderSrc) {
-	std::cout << "Compiling shaders" << std::endl;
+	GLuint program = glCreateProgram();
 
-	GLuint shaderProgram = glCreateProgram();
+	GLuint vetexShader = CompileShader(vShaderSrc, GL_VERTEX_SHADER);
+	GLuint fragmentShader = CompileShader(fShaderSrc, GL_FRAGMENT_SHADER);
 
-	AddShader(shaderProgram, vShaderSrc, GL_VERTEX_SHADER);
-	AddShader(shaderProgram, fShaderSrc, GL_FRAGMENT_SHADER);
+	glAttachShader(program, vetexShader);
+	glAttachShader(program, fragmentShader);
 
-	GLint success = 0;
-	GLchar infoLog[1024] = { 0 };
-
-	glLinkProgram(shaderProgram); // send program to GPU
+	glLinkProgram(program); // send program to GPU
 
 	// Check for errors
-	glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+	GLint success = 0;
+	glGetProgramiv(program, GL_LINK_STATUS, &success);
 	if (!success) {
-		glGetProgramInfoLog(shaderProgram, sizeof(infoLog), NULL, infoLog);
+		GLchar infoLog[1024] = { 0 };
+		glGetProgramInfoLog(program, sizeof(infoLog), NULL, infoLog);
 		std::cout << "Error linking program: " << infoLog << std::endl;
 		exit(1);
 	}
 
 	// Validate program
-	glValidateProgram(shaderProgram);
-	glGetProgramiv(shaderProgram, GL_VALIDATE_STATUS, &success);
+	glValidateProgram(program);
+	glGetProgramiv(program, GL_VALIDATE_STATUS, &success);
 	if (!success) {
-		glGetProgramInfoLog(shaderProgram, sizeof(infoLog), NULL, infoLog);
+		GLchar infoLog[1024] = { 0 };
+		glGetProgramInfoLog(program, sizeof(infoLog), NULL, infoLog);
 		std::cout << "Error validating program: " << infoLog << std::endl;
 		exit(1);
 	}
 
-	return shaderProgram;
+	// Delete intermediate shader outputs
+	glDeleteShader(vetexShader);
+	glDeleteShader(fragmentShader);
+
+	return program;
 }

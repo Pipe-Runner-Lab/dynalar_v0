@@ -2,7 +2,7 @@
 
 class Triangle {
 private:
-	GLuint VAO = 0, VBO = 0, shaderProgram = 0;
+	GLuint m_VAO = 0, m_VBO = 0, m_program = 0;
 	GLfloat vertices[3 * 3] = {
 		-1.0f, -1.0f, 0.0f, // Left
 		1.0f, -1.0f, 0.0f, // Right

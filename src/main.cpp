@@ -50,6 +50,8 @@ int main() {
 	/* Setup viewport size */
 	glViewport(0, 0, bufferWidth, bufferHeight);
 
+	Triangle triangle;
+
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(mainWindow))
 	{
@@ -57,14 +59,13 @@ int main() {
 		glfwPollEvents();
 
 		/* Render here */
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT);
+
+		triangle.draw();
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(mainWindow);
-
-		Triangle triangle;
-		triangle.draw();
 
 		/* Poll for and process events */
 		glfwPollEvents();
