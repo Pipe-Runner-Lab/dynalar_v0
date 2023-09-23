@@ -50,7 +50,8 @@ int main() {
 	/* Setup viewport size */
 	glViewport(0, 0, bufferWidth, bufferHeight);
 
-	Triangle triangle;
+	Triangle triangle = Triangle();
+	triangle.move(0.3f, 0, 0);
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(mainWindow))

@@ -2,6 +2,9 @@
 #include "utils.h"
 #include "triangle.h"
 #include <iostream>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 Triangle::Triangle() {
 	// vertex shader
@@ -9,9 +12,10 @@ Triangle::Triangle() {
 		#version 330
 
 		layout (location = 0) in vec3 pos;
+		uniform mat4 model;
 
 		void main() {
-			gl_Position = vec4(0.4 * pos.x, 0.4 * pos.y, pos.z, 1.0);
+			gl_Position = model * vec4(0.4 * pos.x, 0.4 * pos.y, pos.z, 1.0);
 		}
 	)";
 
@@ -51,6 +55,21 @@ Triangle::Triangle() {
 
 	// Create and compile shaders
 	m_program = CompileShaders(vShaderSrc, fShaderSrc);
+
+	// apply default transform
+	applyTransform(m_model);
+}
+
+void Triangle::applyTransform(glm::mat4 model) {
+	glUseProgram(m_program);
+	GLint modelLoc = glGetUniformLocation(m_program, "model");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+	glUseProgram(0);
+}
+
+void Triangle::move(float x, float y, float z) {
+	glm::mat4 model = glm::translate(m_model, glm::vec3(x, y, z));
+	applyTransform(model);
 }
 
 void Triangle::draw() {
