@@ -1,5 +1,5 @@
 #include <GLEW/glew.h>
-#include "utils.h"
+#include "../utils.h"
 #include "triangle.h"
 #include <iostream>
 #include <glm/glm.hpp>
@@ -12,9 +12,13 @@ Triangle::Triangle() {
 		#version 330
 
 		layout (location = 0) in vec3 pos;
+	
+		out vec3 vColor;
+
 		uniform mat4 model;
 
 		void main() {
+			vColor = clamp(pos, 0.0f, 1.0f);
 			gl_Position = model * vec4(0.4 * pos.x, 0.4 * pos.y, pos.z, 1.0);
 		}
 	)";
@@ -24,9 +28,10 @@ Triangle::Triangle() {
 		#version 330
 
 		out vec4 colour; // only possible output from fragment shader, so name not important
+		in vec3 vColor;
 
 		void main() {
-			colour = vec4(1.0, 0.0, 0.0, 1.0);
+			colour = vec4(vColor, 1.0);
 		}
 	)";
 
@@ -55,26 +60,34 @@ Triangle::Triangle() {
 
 	// Create and compile shaders
 	m_program = CompileShaders(vShaderSrc, fShaderSrc);
-
-	// apply default transform
-	applyTransform(m_model);
-}
-
-void Triangle::applyTransform(glm::mat4 model) {
-	glUseProgram(m_program);
-	GLint modelLoc = glGetUniformLocation(m_program, "model");
-	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-	glUseProgram(0);
 }
 
 void Triangle::move(float x, float y, float z) {
-	glm::mat4 model = glm::translate(m_model, glm::vec3(x, y, z));
-	applyTransform(model);
+	m_model = glm::translate(m_model, glm::vec3(x, y, z));
+}
+
+void Triangle::scale(float x, float y, float z) {
+	m_model = glm::scale(m_model, glm::vec3(x, y, z));
+}
+
+void Triangle::rotateX(float angle) {
+	m_model = glm::rotate(m_model, angle, glm::vec3(1.0f, 0.0f, 0.0f));
+}
+
+void Triangle::rotateY(float angle) {
+	m_model = glm::rotate(m_model, angle, glm::vec3(0.0f, 1.0f, 0.0f));
+}
+
+void Triangle::rotateZ(float angle) {
+	m_model = glm::rotate(m_model, angle, glm::vec3(0.0f, 0.0f, 1.0f));
 }
 
 void Triangle::draw() {
 	glUseProgram(m_program);
 	glBindVertexArray(m_VAO);
+
+	GLint modelLoc = glGetUniformLocation(m_program, "model");
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(m_model));
 	
 	glDrawArrays(GL_TRIANGLES, 0, 3);
 	

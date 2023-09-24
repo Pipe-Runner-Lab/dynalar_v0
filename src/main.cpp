@@ -47,11 +47,17 @@ int main() {
 		return -1;
 	}
 
+	/* Enable depth test */
+	glEnable(GL_DEPTH_TEST);
+
 	/* Setup viewport size */
 	glViewport(0, 0, bufferWidth, bufferHeight);
 
-	Triangle triangle = Triangle();
-	triangle.move(0.3f, 0, 0);
+	/*Triangle triangle = Triangle();
+	triangle.move(0.3f, 0, 0);*/
+
+	Pyramid pyramid = Pyramid();
+	pyramid.move(0.3f, 0, -2.5f);
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(mainWindow))
@@ -60,11 +66,13 @@ int main() {
 		glfwPollEvents();
 
 		/* Render here */
-		glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // TODO: Look into how this works
 
 		// INFO: swap buffer should not be called before drawing
-		triangle.draw();
+		//triangle.draw
+		pyramid.rotateY(0.003f);
+		pyramid.draw();
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(mainWindow);

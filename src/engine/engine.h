@@ -1,3 +1,4 @@
 #pragma once
 
-#include "triangle.h"
+#include "primitives/triangle.h"
+#include "primitives/pyramid.h"

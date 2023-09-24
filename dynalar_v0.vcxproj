@@ -159,13 +159,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\primitives\Mesh.cpp" />
+    <ClCompile Include="src\engine\primitives\pyramid.cpp" />
     <ClCompile Include="src\engine\utils.cpp" />
-    <ClCompile Include="src\engine\triangle.cpp" />
+    <ClCompile Include="src\engine\primitives\triangle.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\primitives\Mesh.h" />
     <ClInclude Include="src\engine\engine.h" />
-    <ClInclude Include="src\engine\triangle.h" />
+    <ClInclude Include="src\engine\primitives\object.h" />
+    <ClInclude Include="src\engine\primitives\pyramid.h" />
+    <ClInclude Include="src\engine\primitives\triangle.h" />
     <ClInclude Include="src\engine\utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
