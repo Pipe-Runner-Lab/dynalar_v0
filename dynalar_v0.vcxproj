@@ -159,19 +159,30 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\engine\primitives\Mesh.cpp" />
-    <ClCompile Include="src\engine\primitives\pyramid.cpp" />
+    <ClCompile Include="src\engine\core\IndexBuffer.cpp" />
     <ClCompile Include="src\engine\utils.cpp" />
-    <ClCompile Include="src\engine\primitives\triangle.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\engine\core\VertexBuffer.cpp" />
+    <ClCompile Include="src\engine\core\VertexArray.cpp" />
+    <ClCompile Include="src\engine\core\VertexBufferLayout.cpp" />
+    <ClCompile Include="src\engine\primitives\TriangleImp.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\engine\primitives\Mesh.h" />
+    <ClInclude Include="src\engine\core\IndexBuffer.h" />
     <ClInclude Include="src\engine\engine.h" />
-    <ClInclude Include="src\engine\primitives\object.h" />
-    <ClInclude Include="src\engine\primitives\pyramid.h" />
-    <ClInclude Include="src\engine\primitives\triangle.h" />
     <ClInclude Include="src\engine\utils.h" />
+    <ClInclude Include="src\engine\core\VertexBuffer.h" />
+    <ClInclude Include="src\engine\core\VertexArray.h" />
+    <ClInclude Include="src\engine\core\VertexBufferLayout.h" />
+    <ClInclude Include="src\engine\primitives\TriangleImp.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitattributes" />
+    <None Include=".gitignore" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="LICENSE.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -53,11 +53,13 @@ int main() {
 	/* Setup viewport size */
 	glViewport(0, 0, bufferWidth, bufferHeight);
 
+	/* Enable vsync : Sync render loop to monitor refresh rate */
+	glfwSwapInterval(1);
+
 	/*Triangle triangle = Triangle();
 	triangle.move(0.3f, 0, 0);*/
 
-	Pyramid pyramid = Pyramid();
-	pyramid.move(0.3f, 0, -2.5f);
+	TriangleImp tri = TriangleImp();
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(mainWindow))
@@ -71,8 +73,7 @@ int main() {
 
 		// INFO: swap buffer should not be called before drawing
 		//triangle.draw
-		pyramid.rotateY(0.003f);
-		pyramid.draw();
+		tri.draw();
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(mainWindow);
