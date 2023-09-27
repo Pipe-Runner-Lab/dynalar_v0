@@ -3,6 +3,7 @@
 #include <GLEW/glew.h>
 #include "../core/IndexBuffer.h"
 #include "../core/VertexArray.h"
+#include "../core/Shader.h"
 
 class TriangleImp
 {
@@ -17,8 +18,9 @@ private:
 	};
 
 	GLuint m_program = 0;
-	VertexArray va;
+	VertexArray va = VertexArray();
 	IndexBuffer ib = IndexBuffer(indices, sizeof(indices) / sizeof(GLuint));
+	Shader shader = Shader("./something", "./something");
 
 public:
 	TriangleImp();

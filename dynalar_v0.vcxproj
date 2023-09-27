@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\core\Shader.cpp" />
     <ClCompile Include="src\engine\core\IndexBuffer.cpp" />
     <ClCompile Include="src\engine\utils.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="src\engine\primitives\TriangleImp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\core\Shader.h" />
     <ClInclude Include="src\engine\core\IndexBuffer.h" />
     <ClInclude Include="src\engine\engine.h" />
     <ClInclude Include="src\engine\utils.h" />

@@ -7,7 +7,6 @@ class IndexBuffer
 private:
 	GLuint m_RendererID = 0, m_Count = 0;
 public:
-	IndexBuffer() {};
 	IndexBuffer(const GLuint* data, GLuint count);
 	~IndexBuffer();
 
