@@ -19,9 +19,9 @@ public:
 
 	void SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3);
 private:
-	GLuint CompileShader(char* srcCode, GLenum shaderType);
-	GLuint CreateShader(char* vShaderSrc, char* fShaderSrc);
-	void ParseShader(const std::string& filename);
+	GLuint CompileShader(const std::string& srcCode, GLenum shaderType);
+	GLuint CreateShader(const std::string& vShaderSrc, const std::string& fShaderSrc);
+	std::string ParseShader(const std::string& filename);
 	GLuint GetUnifromLocation(const std::string& name);
 };
 

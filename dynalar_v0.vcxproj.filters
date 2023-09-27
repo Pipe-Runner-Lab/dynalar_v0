@@ -70,6 +70,8 @@
     <None Include="README.md" />
     <None Include=".gitignore" />
     <None Include=".gitattributes" />
+    <None Include="src\engine\shaders\sample.frag" />
+    <None Include="src\engine\shaders\sample.vert" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE.txt" />

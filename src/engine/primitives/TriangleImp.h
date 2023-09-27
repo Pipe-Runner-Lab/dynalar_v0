@@ -20,7 +20,7 @@ private:
 	GLuint m_program = 0;
 	VertexArray va = VertexArray();
 	IndexBuffer ib = IndexBuffer(indices, sizeof(indices) / sizeof(GLuint));
-	Shader shader = Shader("./something", "./something");
+	Shader shader = Shader("./src/engine/shaders/sample.vert", "./src/engine/shaders/sample.frag");
 
 public:
 	TriangleImp();

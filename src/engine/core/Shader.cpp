@@ -1,12 +1,14 @@
 #include "Shader.h"
 #include <iostream>
+#include <fstream>
 #include "../utils.h"
 
-GLuint Shader::CompileShader(char* srcCode, GLenum shaderType) {
+GLuint Shader::CompileShader(const std::string& srcCode, GLenum shaderType) {
 	GLCall(GLuint shader = glCreateShader(shaderType));
-	GLint codeLength = strlen(srcCode);
+	GLint codeLength = srcCode.length();
+	const char* c_srcCode = srcCode.c_str();
 
-	GLCall(glShaderSource(shader, 1, &srcCode, nullptr)); // notice address of pointer
+	GLCall(glShaderSource(shader, 1, &c_srcCode, nullptr)); // notice address of pointer
 	GLCall(glCompileShader(shader));
 
 	// Check for errors
@@ -23,7 +25,7 @@ GLuint Shader::CompileShader(char* srcCode, GLenum shaderType) {
 	return shader;
 }
 
-GLuint Shader::CreateShader(char* vShaderSrc, char* fShaderSrc) {
+GLuint Shader::CreateShader(const std::string& vShaderSrc, const std::string& fShaderSrc) {
 	GLCall(GLuint program = glCreateProgram());
 
 	GLuint vetexShader = CompileShader(vShaderSrc, GL_VERTEX_SHADER);
@@ -61,36 +63,31 @@ GLuint Shader::CreateShader(char* vShaderSrc, char* fShaderSrc) {
 	return program;
 }
 
-void Shader::ParseShader(const std::string& filename) {
-	// TODO: Implement
+std::string Shader::ParseShader(const std::string& filename) {
+	std::string content = "";
+	std::ifstream fileStream = std::ifstream(filename.c_str(), std::ios::in);
+
+	if (!fileStream.is_open()) {
+		std::cout << "Failed to open file: " << filename << std::endl;
+		return "";
+	}
+
+	std::string line = "";
+
+	while (!fileStream.eof()) {
+		std::getline(fileStream, line);
+		content.append(line + "\n");
+	}
+
+	fileStream.close();
+
+	return content;
 }
 
 Shader::Shader(const std::string& vertexShaderFilePath, const std::string& fragmentShaderFilePath): m_vertFilepath(vertexShaderFilePath), m_fragFilepath(fragmentShaderFilePath)
 {
-	char* vShaderSrc = (char*)R"(
-		#version 330
-
-		layout (location = 0) in vec3 pos;
-	
-		out vec3 vColor;
-
-		void main() {
-			vColor = clamp(pos, 0.0f, 1.0f);
-			gl_Position = vec4(0.4 * pos.x, 0.4 * pos.y, pos.z, 1.0);
-		}
-	)";
-
-	// fragment shader
-	char* fShaderSrc = (char*)R"(
-		#version 330
-
-		out vec4 colour; // only possible output from fragment shader, so name not important
-		in vec3 vColor;
-
-		void main() {
-			colour = vec4(vColor, 1.0);
-		}
-	)";
+	const std::string vShaderSrc = ParseShader(vertexShaderFilePath);
+	const std::string fShaderSrc = ParseShader(fragmentShaderFilePath);
 
 	m_RendererID = CreateShader(vShaderSrc, fShaderSrc);
 }
