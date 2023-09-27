@@ -58,7 +58,6 @@ int main() {
 
 	/*Triangle triangle = Triangle();
 	triangle.move(0.3f, 0, 0);*/
-
 	TriangleImp tri = TriangleImp();
 
 	/* Loop until the user closes the window */

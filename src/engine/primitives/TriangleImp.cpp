@@ -15,6 +15,10 @@ TriangleImp::TriangleImp()
 	layout.Push<float>(3);
 
 	va.AddBuffer(vb, layout);
+
+	shader.Bind();
+	shader.SetUniform4f("u_color", 1.0f, 0.0f, 0.0f, 1.0f);
+	shader.Unbind();
 }
 
 void TriangleImp::draw()

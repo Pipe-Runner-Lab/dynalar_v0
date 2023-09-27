@@ -1,8 +1,8 @@
 #version 330
 
 out vec4 colour; // only possible output from fragment shader, so name not important
-in vec3 vColor;
+in vec4 vColor;
 
 void main() {
-	colour = vec4(vColor, 1.0);
+	colour = vColor;
 }

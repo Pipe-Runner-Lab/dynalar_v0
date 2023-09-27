@@ -22,6 +22,6 @@ private:
 	GLuint CompileShader(const std::string& srcCode, GLenum shaderType);
 	GLuint CreateShader(const std::string& vShaderSrc, const std::string& fShaderSrc);
 	std::string ParseShader(const std::string& filename);
-	GLuint GetUnifromLocation(const std::string& name);
+	GLint GetUnifromLocation(const std::string& name);
 };
 

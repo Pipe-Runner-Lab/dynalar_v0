@@ -94,7 +94,7 @@ Shader::Shader(const std::string& vertexShaderFilePath, const std::string& fragm
 
 Shader::~Shader()
 {
-	
+	GLCall(glDeleteProgram(m_RendererID));
 }
 
 void Shader::Bind()
@@ -109,9 +109,16 @@ void Shader::Unbind()
 
 void Shader::SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3)
 {
+	GLCall(glUniform4f(GetUnifromLocation(name), v0, v1, v2, v3));
 }
 
-GLuint Shader::GetUnifromLocation(const std::string& name)
+GLint Shader::GetUnifromLocation(const std::string& name)
 {
-	return GLuint();
+	GLCall(GLint location = glGetUniformLocation(m_RendererID, name.c_str()));
+
+	if (location == -1) {
+		std::cout << "Warning: " << name << " does not exist" << std::endl;
+	}
+
+	return location;
 }
