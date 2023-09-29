@@ -1,7 +1,11 @@
 #include <iostream>
 #include <GLEW/glew.h>
 #include <GLFW/glfw3.h>
-#include "engine/engine.h"
+#include "engine/Renderer.h"
+#include "engine/core/VertexBufferLayout.h"
+#include "engine/core/VertexBuffer.h"
+#include "engine/core/Shader.h"
+
 
 const GLint WIDTH = 800, HEIGHT = 600;
 
@@ -58,7 +62,35 @@ int main() {
 
 	/*Triangle triangle = Triangle();
 	triangle.move(0.3f, 0, 0);*/
-	TriangleImp tri = TriangleImp();
+	//TriangleImp tri = TriangleImp();
+	Renderer renderer = Renderer();
+
+	GLfloat vertices[3 * 3] = {
+		-1.0f, -1.0f, 0.0f, // Left
+		1.0f, -1.0f, 0.0f, // Right
+		0.0f, 1.0f, 0.0f // Top
+	};
+	GLuint indices[3] = {
+		0, 1, 2
+	};
+
+	VertexArray va = VertexArray();
+	IndexBuffer ib = IndexBuffer(indices, sizeof(indices) / sizeof(GLuint));
+	Shader shader = Shader("src/engine/shaders/sample.vert", "src/engine/shaders/sample.frag");
+
+	VertexBuffer vb = VertexBuffer(
+		vertices,
+		sizeof(vertices)
+	);
+
+	VertexBufferLayout layout = VertexBufferLayout();
+	layout.Push<float>(3);
+
+	va.AddBuffer(vb, layout);
+
+	shader.Bind();
+	shader.SetUniform4f("u_color", 1.0f, 0.0f, 0.0f, 1.0f);
+	shader.Unbind();
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(mainWindow))
@@ -67,12 +99,11 @@ int main() {
 		glfwPollEvents();
 
 		/* Render here */
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // TODO: Look into how this works
+		renderer.Clear();
 
 		// INFO: swap buffer should not be called before drawing
 		//triangle.draw
-		tri.draw();
+		renderer.Draw(va, ib, shader);
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(mainWindow);
