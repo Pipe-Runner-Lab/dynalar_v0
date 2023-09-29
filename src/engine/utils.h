@@ -1,6 +1,6 @@
-#include <GLEW/glew.h>
-
 #pragma once
+
+#include <GLEW/glew.h>
 
 #define ASSERT(x) if (!(x)) __debugbreak(); // __debugbreak() is a Visual Studio specific function
 # define GLCall(x) GLClearError();\

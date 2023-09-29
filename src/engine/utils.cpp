@@ -1,5 +1,8 @@
+#define STB_IMAGE_IMPLEMENTATION
+
 #include <iostream>
 #include <GLEW/glew.h>
+#include <STB/stb_image.h>
 #include "utils.h"
 
 void GLClearError(){

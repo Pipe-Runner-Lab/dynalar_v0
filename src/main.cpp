@@ -65,13 +65,15 @@ int main() {
 	//TriangleImp tri = TriangleImp();
 	Renderer renderer = Renderer();
 
-	GLfloat vertices[3 * 3] = {
-		-1.0f, -1.0f, 0.0f, // Left
-		1.0f, -1.0f, 0.0f, // Right
-		0.0f, 1.0f, 0.0f // Top
+	GLfloat vertices[4 * 3] = {
+		-0.5f, -0.5f, 0.0f, // Left
+		0.5f, -0.5f, 0.0f, // Right
+		0.5f, 0.5f, 0.0f, // Top
+		-0.5f, 0.5f, 0.0f
 	};
-	GLuint indices[3] = {
-		0, 1, 2
+	GLuint indices[6] = {
+		0, 1, 2,
+		2, 3, 0
 	};
 
 	VertexArray va = VertexArray();
