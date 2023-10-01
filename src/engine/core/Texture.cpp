@@ -18,8 +18,6 @@ Texture::Texture(const std::string& filePath): m_RendererID(0), m_filePath(fileP
 	m_LocalBuffer = stbi_load(filePath.c_str(), &m_Width, &m_Height, &m_BPP, 4); // desired channel 4 since RGBA
 	if (m_LocalBuffer)
 	{
-		//glGenerateMipmap(GL_TEXTURE_2D);
-
 		// sending texture data to GPU
 		GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LocalBuffer));
 	}

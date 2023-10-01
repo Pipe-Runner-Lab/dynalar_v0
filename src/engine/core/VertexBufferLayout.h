@@ -56,6 +56,11 @@ public:
 	inline const std::vector<VertexBufferElement>& GetElements() const {
 		return m_VertexBufferElements;
 	};
+
+	/**
+	 * @brief Returns the stride for the data layout
+	 * @return layout in bytes
+	*/
 	inline GLuint GetStride() const {
 		return m_stride;
 	};

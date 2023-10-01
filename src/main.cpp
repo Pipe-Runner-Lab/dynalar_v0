@@ -69,30 +69,20 @@ int main() {
 	triangle.move(0.3f, 0, 0);*/
 	//TriangleImp tri = TriangleImp();
 	Renderer renderer = Renderer();
-	
-	//GLfloat vertices[4 * (3 + 2)] = {
-	//	-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, // LB
-	//	 0.5f, -0.5f, 0.0f,   1.0f, 0.0f, // RB
-	//	 0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // RT
-	//	-0.5f,  0.5f, 0.0f,   0.0f, 1.0f, // LT
-	//};
-	GLfloat vertices[4 * (3 + 3)] = {
-		-0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.0f, // LB
-		 0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f, // RB
-		 0.5f,  0.5f, 0.0f,   0.0f, 0.0f, 1.0f, // RT
-		-0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 1.0f, // LT
+
+	GLfloat vertices[4 * (3 + 2)] = {
+		-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, // LB
+		 0.5f, -0.5f, 0.0f,   1.0f, 0.0f, // RB
+		 0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // RT
+		-0.5f,  0.5f, 0.0f,   0.0f, 1.0f, // LT
 	};
+
 	GLuint indices[6] = {
 		0, 1, 2,
 		2, 3, 0
 	};
 
 	VertexArray va = VertexArray();
-	IndexBuffer ib = IndexBuffer(indices, sizeof(indices) / sizeof(GLuint));
-	Shader shader = Shader("assets/shaders/sample.vert", "assets/shaders/sample.frag");
-	Texture texture = Texture("assets/images/awesomeface.png");
-	texture.Bind();
-
 	VertexBuffer vb = VertexBuffer(
 		vertices,
 		sizeof(vertices)
@@ -100,14 +90,19 @@ int main() {
 
 	VertexBufferLayout layout = VertexBufferLayout();
 	layout.Push<float>(3); // vertices
-	layout.Push<float>(3); // texture coordinates
+	layout.Push<float>(2); // texture coordinates
 
 	va.AddBuffer(vb, layout);
+	IndexBuffer ib = IndexBuffer(indices, sizeof(indices) / sizeof(GLuint));
 
+	Shader shader = Shader("assets/shaders/sample.vert", "assets/shaders/sample.frag");
 	shader.Bind();
 	shader.SetUniform1i("u_Texture", 0);
 	shader.SetUniform4f("u_color", 1.0f, 0.0f, 0.0f, 1.0f);
 	shader.Unbind();
+
+	Texture texture = Texture("assets/images/logo.png");
+	texture.Bind();
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(mainWindow))
@@ -128,7 +123,7 @@ int main() {
 		/* Poll for and process events */
 		glfwPollEvents();
 	}
-	
+
 	glfwTerminate();
 	return 0;
 }
