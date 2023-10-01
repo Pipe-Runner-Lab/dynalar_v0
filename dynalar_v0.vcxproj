@@ -184,8 +184,8 @@
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
     <None Include="README.md" />
-    <None Include="src\engine\shaders\sample.frag" />
-    <None Include="src\engine\shaders\sample.vert" />
+    <None Include="assets\shaders\sample.frag" />
+    <None Include="assets\shaders\sample.vert" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE.txt" />

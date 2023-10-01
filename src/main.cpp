@@ -5,6 +5,7 @@
 #include "engine/core/VertexBufferLayout.h"
 #include "engine/core/VertexBuffer.h"
 #include "engine/core/Shader.h"
+#include "engine/core/Texture.h"
 
 
 const GLint WIDTH = 800, HEIGHT = 600;
@@ -51,8 +52,12 @@ int main() {
 		return -1;
 	}
 
-	/* Enable depth test */
+	/* Enable depth test & blending */
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+
+	/* Set blending function */
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	/* Setup viewport size */
 	glViewport(0, 0, bufferWidth, bufferHeight);
@@ -64,12 +69,18 @@ int main() {
 	triangle.move(0.3f, 0, 0);*/
 	//TriangleImp tri = TriangleImp();
 	Renderer renderer = Renderer();
-
-	GLfloat vertices[4 * 3] = {
-		-0.5f, -0.5f, 0.0f, // Left
-		0.5f, -0.5f, 0.0f, // Right
-		0.5f, 0.5f, 0.0f, // Top
-		-0.5f, 0.5f, 0.0f
+	
+	//GLfloat vertices[4 * (3 + 2)] = {
+	//	-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, // LB
+	//	 0.5f, -0.5f, 0.0f,   1.0f, 0.0f, // RB
+	//	 0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // RT
+	//	-0.5f,  0.5f, 0.0f,   0.0f, 1.0f, // LT
+	//};
+	GLfloat vertices[4 * (3 + 3)] = {
+		-0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.0f, // LB
+		 0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f, // RB
+		 0.5f,  0.5f, 0.0f,   0.0f, 0.0f, 1.0f, // RT
+		-0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 1.0f, // LT
 	};
 	GLuint indices[6] = {
 		0, 1, 2,
@@ -78,7 +89,9 @@ int main() {
 
 	VertexArray va = VertexArray();
 	IndexBuffer ib = IndexBuffer(indices, sizeof(indices) / sizeof(GLuint));
-	Shader shader = Shader("src/engine/shaders/sample.vert", "src/engine/shaders/sample.frag");
+	Shader shader = Shader("assets/shaders/sample.vert", "assets/shaders/sample.frag");
+	Texture texture = Texture("assets/images/awesomeface.png");
+	texture.Bind();
 
 	VertexBuffer vb = VertexBuffer(
 		vertices,
@@ -86,11 +99,13 @@ int main() {
 	);
 
 	VertexBufferLayout layout = VertexBufferLayout();
-	layout.Push<float>(3);
+	layout.Push<float>(3); // vertices
+	layout.Push<float>(3); // texture coordinates
 
 	va.AddBuffer(vb, layout);
 
 	shader.Bind();
+	shader.SetUniform1i("u_Texture", 0);
 	shader.SetUniform4f("u_color", 1.0f, 0.0f, 0.0f, 1.0f);
 	shader.Unbind();
 
@@ -113,7 +128,7 @@ int main() {
 		/* Poll for and process events */
 		glfwPollEvents();
 	}
-
+	
 	glfwTerminate();
 	return 0;
 }
