@@ -2,10 +2,7 @@
 #include <GLEW/glew.h>
 #include <GLFW/glfw3.h>
 #include "engine/Renderer.h"
-#include "engine/core/VertexBufferLayout.h"
-#include "engine/core/VertexBuffer.h"
-#include "engine/core/Shader.h"
-#include "engine/core/Texture.h"
+#include "engine/primitives/TexturedSquare.h"
 
 
 const GLint WIDTH = 800, HEIGHT = 600;
@@ -52,12 +49,13 @@ int main() {
 		return -1;
 	}
 
-	/* Enable depth test & blending */
+	/* Enable depth test */
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_BLEND);
 
-	/* Set blending function */
+	/* Enable blending, set blending function and equation */
+	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glBlendEquation(GL_ADD);
 
 	/* Setup viewport size */
 	glViewport(0, 0, bufferWidth, bufferHeight);
@@ -70,39 +68,7 @@ int main() {
 	//TriangleImp tri = TriangleImp();
 	Renderer renderer = Renderer();
 
-	GLfloat vertices[4 * (3 + 2)] = {
-		-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, // LB
-		 0.5f, -0.5f, 0.0f,   1.0f, 0.0f, // RB
-		 0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // RT
-		-0.5f,  0.5f, 0.0f,   0.0f, 1.0f, // LT
-	};
-
-	GLuint indices[6] = {
-		0, 1, 2,
-		2, 3, 0
-	};
-
-	VertexArray va = VertexArray();
-	VertexBuffer vb = VertexBuffer(
-		vertices,
-		sizeof(vertices)
-	);
-
-	VertexBufferLayout layout = VertexBufferLayout();
-	layout.Push<float>(3); // vertices
-	layout.Push<float>(2); // texture coordinates
-
-	va.AddBuffer(vb, layout);
-	IndexBuffer ib = IndexBuffer(indices, sizeof(indices) / sizeof(GLuint));
-
-	Shader shader = Shader("assets/shaders/sample.vert", "assets/shaders/sample.frag");
-	shader.Bind();
-	shader.SetUniform1i("u_Texture", 0);
-	shader.SetUniform4f("u_color", 1.0f, 0.0f, 0.0f, 1.0f);
-	shader.Unbind();
-
-	Texture texture = Texture("assets/images/logo.png");
-	texture.Bind();
+	TexturedSquare texturedSquare = TexturedSquare();
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(mainWindow))
@@ -114,8 +80,7 @@ int main() {
 		renderer.Clear();
 
 		// INFO: swap buffer should not be called before drawing
-		//triangle.draw
-		renderer.Draw(va, ib, shader);
+		texturedSquare.Draw(renderer);
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(mainWindow);
