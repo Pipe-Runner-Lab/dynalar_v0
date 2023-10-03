@@ -1,6 +1,7 @@
 #include "Shader.h"
 #include <iostream>
 #include <fstream>
+#include <glm/gtc/type_ptr.hpp>
 #include "../utils.h"
 
 GLuint Shader::CompileShader(const std::string& srcCode, GLenum shaderType) {
@@ -84,7 +85,7 @@ std::string Shader::ParseShader(const std::string& filename) {
 	return content;
 }
 
-Shader::Shader(const std::string& vertexShaderFilePath, const std::string& fragmentShaderFilePath): m_vertFilepath(vertexShaderFilePath), m_fragFilepath(fragmentShaderFilePath)
+Shader::Shader(const std::string& vertexShaderFilePath, const std::string& fragmentShaderFilePath) : m_vertFilepath(vertexShaderFilePath), m_fragFilepath(fragmentShaderFilePath)
 {
 	const std::string vShaderSrc = ParseShader(vertexShaderFilePath);
 	const std::string fShaderSrc = ParseShader(fragmentShaderFilePath);
@@ -115,6 +116,11 @@ void Shader::SetUniform1i(const std::string& name, int v0)
 void Shader::SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3)
 {
 	GLCall(glUniform4f(GetUnifromLocation(name), v0, v1, v2, v3));
+}
+
+void Shader::SetUniformMatrix4f(const std::string& name, const glm::mat4& matrix)
+{
+	GLCall(glUniformMatrix4fv(GetUnifromLocation(name), 1, GL_FALSE, glm::value_ptr(matrix)));
 }
 
 GLint Shader::GetUnifromLocation(const std::string& name)

@@ -3,9 +3,9 @@
 #include <GLFW/glfw3.h>
 #include "engine/Renderer.h"
 #include "engine/primitives/TexturedSquare.h"
+#include "engine/primitives/Pyramid.h"
 
-
-const GLint WIDTH = 800, HEIGHT = 600;
+const GLint WIDTH = 1200, HEIGHT = 900;
 
 int main() {
 	GLFWwindow* mainWindow;
@@ -69,6 +69,7 @@ int main() {
 	Renderer renderer = Renderer();
 
 	TexturedSquare texturedSquare = TexturedSquare();
+	Pyramid pyramid = Pyramid();
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(mainWindow))
@@ -80,7 +81,8 @@ int main() {
 		renderer.Clear();
 
 		// INFO: swap buffer should not be called before drawing
-		texturedSquare.Draw(renderer);
+		//texturedSquare.Draw(renderer);
+		pyramid.Draw(renderer);
 
 		/* Swap front and back buffers */
 		glfwSwapBuffers(mainWindow);

@@ -1,9 +1,17 @@
 #include "Renderer.h"
 #include "GLEW/glew.h"
+#include "glm/glm.hpp"
+
+Renderer::Renderer() : m_ProjectionMatrix(glm::ortho(-5.0f, 5.0f, -5.0f, 5.0f, -1.0f, 1.0f))
+{
+}
 
 void Renderer::Draw(VertexArray& va, IndexBuffer& ib, Shader& shader) const
 {
 	shader.Bind();
+
+	shader.SetUniformMatrix4f("u_projection", m_ProjectionMatrix);
+	
 	va.Bind();
 	ib.Bind();
 

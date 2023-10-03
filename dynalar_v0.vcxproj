@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\primitives\Pyramid.cpp" />
     <ClCompile Include="src\engine\Renderer.cpp" />
     <ClCompile Include="src\engine\core\Shader.cpp" />
     <ClCompile Include="src\engine\core\IndexBuffer.cpp" />
@@ -172,6 +173,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="dependencies\STB\include\STB\stb_image.h" />
+    <ClInclude Include="assets\shaders\pyramid.frag" />
+    <ClInclude Include="src\engine\primitives\Pyramid.h" />
     <ClInclude Include="src\engine\Renderer.h" />
     <ClInclude Include="src\engine\core\Shader.h" />
     <ClInclude Include="src\engine\core\IndexBuffer.h" />
@@ -185,6 +188,7 @@
   <ItemGroup>
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
+    <None Include="assets\shaders\pyramid.vert" />
     <None Include="README.md" />
     <None Include="assets\shaders\sample.frag" />
     <None Include="assets\shaders\sample.vert" />
