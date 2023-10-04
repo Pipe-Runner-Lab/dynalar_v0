@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\core\Camera.cpp" />
     <ClCompile Include="src\engine\primitives\Pyramid.cpp" />
     <ClCompile Include="src\engine\Renderer.cpp" />
     <ClCompile Include="src\engine\core\Shader.cpp" />
@@ -172,6 +173,7 @@
     <ClCompile Include="src\engine\primitives\TexturedSquare.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\core\Camera.h" />
     <ClInclude Include="dependencies\STB\include\STB\stb_image.h" />
     <ClInclude Include="assets\shaders\pyramid.frag" />
     <ClInclude Include="src\engine\primitives\Pyramid.h" />

@@ -4,6 +4,7 @@
 #include "engine/Renderer.h"
 #include "engine/primitives/TexturedSquare.h"
 #include "engine/primitives/Pyramid.h"
+#include "engine/core/Camera.h"
 
 const GLint WIDTH = 1200, HEIGHT = 900;
 
@@ -66,7 +67,8 @@ int main() {
 	/*Triangle triangle = Triangle();
 	triangle.move(0.3f, 0, 0);*/
 	//TriangleImp tri = TriangleImp();
-	Renderer renderer = Renderer();
+	Camera camera = Camera();
+	Renderer renderer = Renderer(camera);
 
 	TexturedSquare texturedSquare = TexturedSquare();
 	Pyramid pyramid = Pyramid();

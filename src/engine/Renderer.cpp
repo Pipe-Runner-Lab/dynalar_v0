@@ -2,7 +2,9 @@
 #include "GLEW/glew.h"
 #include "glm/glm.hpp"
 
-Renderer::Renderer() : m_ProjectionMatrix(glm::ortho(-5.0f, 5.0f, -5.0f, 5.0f, -1.0f, 1.0f))
+Renderer::Renderer(Camera& camera) : 
+	m_ProjectionMatrix(glm::ortho(-5.0f, 5.0f, -5.0f, 5.0f, -1.0f, 1.0f)),
+	camera(camera)
 {
 }
 
@@ -11,6 +13,7 @@ void Renderer::Draw(VertexArray& va, IndexBuffer& ib, Shader& shader) const
 	shader.Bind();
 
 	shader.SetUniformMatrix4f("u_projection", m_ProjectionMatrix);
+	shader.SetUniformMatrix4f("u_view", camera.m_ViewMatrix);
 	
 	va.Bind();
 	ib.Bind();
