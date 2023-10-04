@@ -96,7 +96,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\GLFW\include;$(SolutionDir)dependencies\GLM\include;$(SolutionDir)dependencies\STB\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\GLFW\include;$(SolutionDir)dependencies\GLM\include;$(SolutionDir)dependencies\STB\include;$(SolutionDir)src\third-party</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -113,7 +113,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\GLFW\include;$(SolutionDir)dependencies\GLM\include;$(SolutionDir)dependencies\STB\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\GLFW\include;$(SolutionDir)dependencies\GLM\include;$(SolutionDir)dependencies\STB\include;$(SolutionDir)src\third-party</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -130,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\GLFW\include;$(SolutionDir)dependencies\GLM\include;$(SolutionDir)dependencies\STB\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\GLFW\include;$(SolutionDir)dependencies\GLM\include;$(SolutionDir)dependencies\STB\include;$(SolutionDir)src\third-party</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,7 +147,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>GLEW_STATIC</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\GLFW\include;$(SolutionDir)dependencies\GLM\include;$(SolutionDir)dependencies\STB\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\GLFW\include;$(SolutionDir)dependencies\GLM\include;$(SolutionDir)dependencies\STB\include;$(SolutionDir)src\third-party</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -171,6 +171,13 @@
     <ClCompile Include="src\engine\core\VertexBufferLayout.cpp" />
     <ClCompile Include="src\engine\core\Texture.cpp" />
     <ClCompile Include="src\engine\primitives\TexturedSquare.cpp" />
+    <ClCompile Include="src\third-party\IMGUI\imgui_impl_glfw.cpp" />
+    <ClCompile Include="src\third-party\IMGUI\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="src\third-party\IMGUI\imgui.cpp" />
+    <ClCompile Include="src\third-party\IMGUI\imgui_demo.cpp" />
+    <ClCompile Include="src\third-party\IMGUI\imgui_draw.cpp" />
+    <ClCompile Include="src\third-party\IMGUI\imgui_tables.cpp" />
+    <ClCompile Include="src\third-party\IMGUI\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\core\Camera.h" />
@@ -186,6 +193,15 @@
     <ClInclude Include="src\engine\core\VertexBufferLayout.h" />
     <ClInclude Include="src\engine\core\Texture.h" />
     <ClInclude Include="src\engine\primitives\TexturedSquare.h" />
+    <ClInclude Include="src\third-party\IMGUI\imgui_impl_glfw.h" />
+    <ClInclude Include="src\third-party\IMGUI\imgui_impl_opengl3.h" />
+    <ClInclude Include="src\third-party\IMGUI\imconfig.h" />
+    <ClInclude Include="src\third-party\IMGUI\imgui.h" />
+    <ClInclude Include="src\third-party\IMGUI\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="src\third-party\IMGUI\imgui_internal.h" />
+    <ClInclude Include="src\third-party\IMGUI\imstb_rectpack.h" />
+    <ClInclude Include="src\third-party\IMGUI\imstb_textedit.h" />
+    <ClInclude Include="src\third-party\IMGUI\imstb_truetype.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />
