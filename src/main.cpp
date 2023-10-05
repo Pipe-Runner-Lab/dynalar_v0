@@ -1,15 +1,18 @@
 #include <iostream>
 #include <IMGUI/imgui.h>
 #include <IMGUI/imgui_impl_glfw.h>
-#include "IMGUI/imgui_impl_opengl3.h"
+#include <IMGUI/imgui_impl_opengl3.h>
 #include <GLEW/glew.h>
 #include <GLFW/glfw3.h>
 #include "engine/Renderer.h"
 #include "engine/primitives/TexturedSquare.h"
 #include "engine/primitives/Pyramid.h"
 #include "engine/core/Camera.h"
+#include "scenes/ClearColor.h"
 
-const GLint WIDTH = 1200, HEIGHT = 900;
+static const GLint WIDTH = 1920, HEIGHT = 1080;
+static const float dt = 1 / 60.0f;
+
 
 int main() {
 	/* Initialize the library */
@@ -46,7 +49,7 @@ int main() {
 	// Allow modern extension features
 	glewExperimental = GL_TRUE;
 
-	/* Initialize IMGUI */
+	/* Initialize ImGui */
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO(); (void)io;
 	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
@@ -80,8 +83,7 @@ int main() {
 	Camera camera = Camera();
 	Renderer renderer = Renderer(camera);
 
-	TexturedSquare texturedSquare = TexturedSquare();
-	Pyramid pyramid = Pyramid();
+	scene::ClearColor clearColorScene = scene::ClearColor();
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(mainWindow))
@@ -94,20 +96,17 @@ int main() {
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
-		/* Render here */
+		/* Clear frame */
 		renderer.Clear();
 
-		{
-			ImGui::Begin("Dashboard");
-			static float f = 0.0f;
-			ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
-			ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
-			ImGui::End();
-		}
+		/* Custom render starts here */
 
-		// INFO: swap buffer should not be called before drawing
-		//texturedSquare.Draw(renderer);
-		pyramid.Draw(renderer);
+		clearColorScene.OnUpdate(dt);
+		clearColorScene.OnRender();
+		clearColorScene.OnImGUIRender();
+
+		/* Custom render ends here */
+
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 

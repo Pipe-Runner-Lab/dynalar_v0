@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\scenes\ClearColor.cpp" />
     <ClCompile Include="src\engine\core\Camera.cpp" />
     <ClCompile Include="src\engine\primitives\Pyramid.cpp" />
     <ClCompile Include="src\engine\Renderer.cpp" />
@@ -180,6 +181,7 @@
     <ClCompile Include="src\third-party\IMGUI\imgui_widgets.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\scenes\ClearColor.h" />
     <ClInclude Include="src\engine\core\Camera.h" />
     <ClInclude Include="dependencies\STB\include\STB\stb_image.h" />
     <ClInclude Include="assets\shaders\pyramid.frag" />
@@ -187,6 +189,7 @@
     <ClInclude Include="src\engine\Renderer.h" />
     <ClInclude Include="src\engine\core\Shader.h" />
     <ClInclude Include="src\engine\core\IndexBuffer.h" />
+    <ClInclude Include="src\scenes\BaseScene.h" />
     <ClInclude Include="src\engine\utils.h" />
     <ClInclude Include="src\engine\core\VertexBuffer.h" />
     <ClInclude Include="src\engine\core\VertexArray.h" />
