@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\scenes\BaseScene.cpp" />
     <ClCompile Include="src\scenes\ClearColor.cpp" />
     <ClCompile Include="src\engine\core\Camera.cpp" />
     <ClCompile Include="src\engine\primitives\Pyramid.cpp" />

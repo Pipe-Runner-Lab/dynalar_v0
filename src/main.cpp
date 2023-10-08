@@ -9,6 +9,7 @@
 #include "engine/primitives/Pyramid.h"
 #include "engine/core/Camera.h"
 #include "scenes/ClearColor.h"
+#include "scenes/BaseScene.h"
 
 static const GLint WIDTH = 1920, HEIGHT = 1080;
 static const float dt = 1 / 60.0f;
@@ -83,7 +84,13 @@ int main() {
 	Camera camera = Camera();
 	Renderer renderer = Renderer(camera);
 
-	scene::ClearColor clearColorScene = scene::ClearColor();
+	scene::BaseScene* currentScene = nullptr;
+	scene::SceneMenu* sceneMenu = new scene::SceneMenu(currentScene);
+
+	/* Set active scene to be main menu */
+	currentScene = sceneMenu;
+
+	sceneMenu->RegisterScene<scene::ClearColor>("Clear Color");
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(mainWindow))
@@ -101,9 +108,17 @@ int main() {
 
 		/* Custom render starts here */
 
-		clearColorScene.OnUpdate(dt);
-		clearColorScene.OnRender();
-		clearColorScene.OnImGUIRender();
+		if (currentScene) {
+			currentScene->OnUpdate(dt);
+			currentScene->OnRender();
+			ImGui::Begin("Scene");
+			if (currentScene != sceneMenu && ImGui::Button("<-")) {
+				delete currentScene;
+				currentScene = sceneMenu;
+			}
+			currentScene->OnImGUIRender();
+			ImGui::End();
+		}
 
 		/* Custom render ends here */
 
