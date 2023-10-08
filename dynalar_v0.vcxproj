@@ -180,6 +180,7 @@
     <ClCompile Include="src\third-party\IMGUI\imgui_draw.cpp" />
     <ClCompile Include="src\third-party\IMGUI\imgui_tables.cpp" />
     <ClCompile Include="src\third-party\IMGUI\imgui_widgets.cpp" />
+    <ClCompile Include="src\scenes\Texture2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\scenes\ClearColor.h" />
@@ -206,6 +207,7 @@
     <ClInclude Include="src\third-party\IMGUI\imstb_rectpack.h" />
     <ClInclude Include="src\third-party\IMGUI\imstb_textedit.h" />
     <ClInclude Include="src\third-party\IMGUI\imstb_truetype.h" />
+    <ClInclude Include="src\scenes\Texture2D.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />

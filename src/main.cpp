@@ -10,6 +10,7 @@
 #include "engine/core/Camera.h"
 #include "scenes/ClearColor.h"
 #include "scenes/BaseScene.h"
+#include "scenes/Texture2D.h"
 
 static const GLint WIDTH = 1920, HEIGHT = 1080;
 static const float dt = 1 / 60.0f;
@@ -91,6 +92,7 @@ int main() {
 	currentScene = sceneMenu;
 
 	sceneMenu->RegisterScene<scene::ClearColor>("Clear Color");
+	sceneMenu->RegisterScene<scene::Texture2D>("2D Texture");
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(mainWindow))
@@ -128,6 +130,11 @@ int main() {
 		/* Swap front and back buffers */
 		glfwSwapBuffers(mainWindow);
 	}
+
+	if (currentScene != sceneMenu) {
+		delete sceneMenu;
+	}
+	delete currentScene;
 
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
