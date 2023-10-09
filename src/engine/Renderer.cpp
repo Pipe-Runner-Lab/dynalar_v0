@@ -1,10 +1,15 @@
 #include "Renderer.h"
 #include "GLEW/glew.h"
-#include "glm/glm.hpp"
 
 Renderer::Renderer(Camera& camera) : 
 	m_ProjectionMatrix(glm::ortho(-5.0f, 5.0f, -5.0f, 5.0f, -1.0f, 1.0f)),
 	camera(camera)
+{
+}
+
+Renderer::Renderer(Camera& camera, glm::mat4 projectionMatrix):
+	camera(camera),
+	m_ProjectionMatrix(projectionMatrix)
 {
 }
 

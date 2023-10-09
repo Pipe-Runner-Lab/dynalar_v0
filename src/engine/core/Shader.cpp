@@ -110,17 +110,23 @@ void Shader::Unbind()
 
 void Shader::SetUniform1i(const std::string& name, int v0)
 {
-	GLCall(glUniform1i(GetUnifromLocation(name), v0));
+	GLint location = GetUnifromLocation(name);
+	if (location != -1)
+		GLCall(glUniform1i(location, v0));
 }
 
 void Shader::SetUniform4f(const std::string& name, float v0, float v1, float v2, float v3)
 {
-	GLCall(glUniform4f(GetUnifromLocation(name), v0, v1, v2, v3));
+	GLint location = GetUnifromLocation(name);
+	if (location != -1)
+		GLCall(glUniform4f(location, v0, v1, v2, v3));
 }
 
 void Shader::SetUniformMatrix4f(const std::string& name, const glm::mat4& matrix)
 {
-	GLCall(glUniformMatrix4fv(GetUnifromLocation(name), 1, GL_FALSE, glm::value_ptr(matrix)));
+	GLint location = GetUnifromLocation(name);
+	if (location != -1)
+		GLCall(glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix)));
 }
 
 GLint Shader::GetUnifromLocation(const std::string& name)

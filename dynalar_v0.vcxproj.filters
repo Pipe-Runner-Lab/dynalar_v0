@@ -42,9 +42,6 @@
     <ClCompile Include="src\engine\core\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\primitives\TexturedSquare.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\engine\primitives\Pyramid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -110,9 +107,6 @@
     <ClInclude Include="src\engine\core\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\primitives\TexturedSquare.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\engine\primitives\Pyramid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -163,8 +157,8 @@
     <None Include="README.md" />
     <None Include=".gitignore" />
     <None Include=".gitattributes" />
-    <None Include="assets\shaders\sample.frag" />
-    <None Include="assets\shaders\sample.vert" />
+    <None Include="assets\shaders\texture2D.frag" />
+    <None Include="assets\shaders\texture2D.vert" />
     <None Include="assets\shaders\pyramid.vert" />
   </ItemGroup>
   <ItemGroup>

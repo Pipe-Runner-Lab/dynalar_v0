@@ -5,11 +5,8 @@
 #include <GLEW/glew.h>
 #include <GLFW/glfw3.h>
 #include "engine/Renderer.h"
-#include "engine/primitives/TexturedSquare.h"
-#include "engine/primitives/Pyramid.h"
-#include "engine/core/Camera.h"
-#include "scenes/ClearColor.h"
 #include "scenes/BaseScene.h"
+#include "scenes/ClearColor.h"
 #include "scenes/Texture2D.h"
 
 static const GLint WIDTH = 1920, HEIGHT = 1080;
