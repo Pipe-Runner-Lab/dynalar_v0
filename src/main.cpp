@@ -9,9 +9,9 @@
 #include "scenes/BaseScene.h"
 #include "scenes/ClearColor.h"
 #include "scenes/Texture2D.h"
+#include "scenes/Pyramid.h"
 
 static const GLint WIDTH = 1920, HEIGHT = 1080;
-static const float dt = 1 / 60.0f;
 
 
 int main() {
@@ -33,10 +33,13 @@ int main() {
 
 	sceneMenu->RegisterScene<scene::ClearColor>("Clear Color");
 	sceneMenu->RegisterScene<scene::Texture2D>("2D Texture");
+	sceneMenu->RegisterScene<scene::Pyramid>("Pyramid");
 
 	/* Loop until the user closes the window */
 	while (!windowManager.ShouldWindowClose())
 	{
+		float dt = 1000.0f / ImGui::GetIO().Framerate;
+
 		/* Check for user events */
 		glfwPollEvents();
 
@@ -51,7 +54,7 @@ int main() {
 		/* Custom render starts here */
 
 		if (currentScene) {
-			currentScene->OnUpdate(dt);
+			currentScene->OnUpdate(dt, windowManager);
 			currentScene->OnRender();
 			ImGui::Begin("Scene");
 			if (currentScene != sceneMenu && ImGui::Button("<-")) {
@@ -59,6 +62,7 @@ int main() {
 				currentScene = sceneMenu;
 			}
 			currentScene->OnImGUIRender();
+			ImGui::Text("%.1f FPS", ImGui::GetIO().Framerate);
 			ImGui::End();
 		}
 
