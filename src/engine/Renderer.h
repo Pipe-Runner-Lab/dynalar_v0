@@ -17,6 +17,6 @@ public:
 	Renderer(Camera& camera);
 	Renderer(Camera& camera, glm::mat4 projectionMatrix);
 	void Draw(VertexArray& va, IndexBuffer& ib, Shader& shader) const;
-	void Clear() const;
+	static void Clear();
 };
 

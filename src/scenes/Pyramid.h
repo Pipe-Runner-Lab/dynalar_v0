@@ -2,20 +2,18 @@
 
 #include <GLEW/glew.h>
 #include "glm/glm.hpp"
-#include "BaseScene.h"
-#include "../engine/core/Texture.h"
 #include "../engine/core/IndexBuffer.h"
 #include "../engine/core/VertexArray.h"
 #include "../engine/core/VertexBuffer.h"
 #include "../engine/Renderer.h"
 
-namespace scene {
+#include "BaseScene.h"
 
-	class Texture2D : public BaseScene {
+namespace scene {
+	class Pyramid : public BaseScene {
 	private:
-		Texture texture;
-		GLfloat vertices[4 * 5];
-		GLuint indices[6];
+		GLfloat vertices[4 * 3];
+		GLuint indices[12];
 		VertexArray va;
 		VertexBuffer vb;
 		VertexBufferLayout layout;
@@ -24,17 +22,12 @@ namespace scene {
 		Camera camera;
 		Renderer renderer;
 		glm::mat4 model_1;
-		glm::mat4 model_2;
 		glm::vec3 translation_1;
-		glm::vec3 translation_2;
 	public:
-		Texture2D();
-		virtual ~Texture2D() {};
+		Pyramid();
 
+		void OnUpdate(float deltaTime, WindowManager& windowManager) override;
 		void OnRender() override;
 		void OnImGUIRender() override;
 	};
-
 }
-
-
