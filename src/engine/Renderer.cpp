@@ -2,8 +2,8 @@
 #include "GLEW/glew.h"
 
 Renderer::Renderer(Camera& camera) : 
-	m_ProjectionMatrix(glm::ortho(-5.0f, 5.0f, -5.0f, 5.0f, -1.0f, 1.0f)),
-	camera(camera)
+	camera(camera),
+	m_ProjectionMatrix(glm::ortho(-5.0f, 5.0f, -5.0f, 5.0f, -1.0f, 1.0f))
 {
 }
 
@@ -30,7 +30,7 @@ void Renderer::Draw(VertexArray& va, IndexBuffer& ib, Shader& shader) const
 	shader.Unbind();
 }
 
-void Renderer::Clear() const
+void Renderer::Clear()
 {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // TODO: Look into how this works
