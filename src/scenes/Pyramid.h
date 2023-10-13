@@ -21,8 +21,8 @@ namespace scene {
 		Shader shader;
 		Camera camera;
 		Renderer renderer;
-		glm::mat4 model_1;
-		glm::vec3 translation_1;
+		glm::mat4 model;
+		glm::vec3 translation;
 	public:
 		Pyramid();
 

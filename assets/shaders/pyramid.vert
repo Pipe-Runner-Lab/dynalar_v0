@@ -11,5 +11,5 @@ uniform mat4 u_model;
 
 void main() {
 	v_Color = clamp(pos, 0.0f, 1.0f);
-	gl_Position = u_projection * u_view * vec4(0.4 * pos.x, 0.4 * pos.y, pos.z, 1.0);
+	gl_Position = u_projection * u_view * u_model * vec4(pos, 1.0);
 }
