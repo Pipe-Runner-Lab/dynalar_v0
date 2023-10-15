@@ -33,7 +33,8 @@ translation(glm::vec3(0.0f, 0.0f, -20.0f))
 
 void scene::Pyramid::OnUpdate(float deltaTime, WindowManager& windowManager)
 {
-	model = glm::rotate(model, deltaTime * 0.005f, glm::vec3(0, 1, 0));
+	camera.Update(deltaTime, windowManager);
+	//model = glm::rotate(model, deltaTime * 0.005f, glm::vec3(0, 1, 0));
 }
 
 void scene::Pyramid::OnRender()

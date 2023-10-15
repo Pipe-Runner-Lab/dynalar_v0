@@ -31,7 +31,13 @@ public:
 	};
 	inline int ShouldWindowClose() { return glfwWindowShouldClose(m_window_ptr); }
 	inline bool& GetKey(int keyCode) { return m_keys[keyCode]; }
-	inline MouseDelta GetMouseDelta() { return MouseDelta{ m_deltaX, m_deltaY }; }
+	inline MouseDelta GetMouseDelta() { 
+		float deltaX = m_deltaX;
+		float deltaY = m_deltaY;
+		m_deltaX = 0;
+		m_deltaY = 0;
+		return MouseDelta{ deltaX, -deltaY }; // inverted y axis
+	}
 	inline bool GetIsCameraControlActive() { return is_camera_control_active; }
 private:
 	static void HandleKeys(GLFWwindow* window, int key, int code, int action, int mode);

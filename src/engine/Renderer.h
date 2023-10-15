@@ -11,7 +11,7 @@ class Renderer
 {
 private:
 	glm::mat4 m_ProjectionMatrix;
-	Camera camera;
+	Camera& camera;
 
 public:
 	Renderer(Camera& camera);

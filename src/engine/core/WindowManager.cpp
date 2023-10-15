@@ -90,7 +90,7 @@ void WindowManager::HandleKeys(GLFWwindow* window, int key, int code, int action
 	}
 
 	/* Camera control toggle is done by pressing 'M' */
-	if (key == GLFW_KEY_M) {
+	if (key == GLFW_KEY_M && action == GLFW_PRESS) {
 		if (windowManager->is_camera_control_active) {
 			windowManager->is_camera_control_active = false;
 			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -122,7 +122,7 @@ void WindowManager::HandleMouse(GLFWwindow* window, double xPos, double yPos)
 	// check initial movement, to avoid jerky start
 	if (windowManager->mouse_initialized) {
 		windowManager->m_deltaX = xPos - windowManager->m_lastX;
-		windowManager->m_deltaX = xPos - windowManager->m_lastX;
+		windowManager->m_deltaY = yPos - windowManager->m_lastY;
 
 	}
 

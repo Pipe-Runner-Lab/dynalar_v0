@@ -18,7 +18,7 @@ void Renderer::Draw(VertexArray& va, IndexBuffer& ib, Shader& shader) const
 	shader.Bind();
 
 	shader.SetUniformMatrix4f("u_projection", m_ProjectionMatrix);
-	shader.SetUniformMatrix4f("u_view", camera.m_ViewMatrix);
+	shader.SetUniformMatrix4f("u_view", camera.GetViewMatrix());
 	
 	va.Bind();
 	ib.Bind();
