@@ -10,7 +10,7 @@ private:
 	GLuint m_RendererID;
 	std::string m_filePath;
 	unsigned char* m_LocalBuffer;
-	int m_Width, m_Height, m_BPP; // BPP => Bits Per Pixel
+	int m_Width, m_Height, m_BPP; // BPP => Bits Per Pixel 
 
 public:
 	Texture(const std::string& filePath);

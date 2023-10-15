@@ -181,6 +181,7 @@
     <ClCompile Include="src\third-party\IMGUI\imgui_widgets.cpp" />
     <ClCompile Include="src\scenes\Texture2D.cpp" />
     <ClCompile Include="src\engine\core\WindowManager.cpp" />
+    <ClCompile Include="src\scenes\TexturePyramid.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\scenes\ClearColor.h" />
@@ -208,11 +209,14 @@
     <ClInclude Include="src\third-party\IMGUI\imstb_truetype.h" />
     <ClInclude Include="src\scenes\Texture2D.h" />
     <ClInclude Include="src\engine\core\WindowManager.h" />
+    <ClInclude Include="src\scenes\TexturePyramid.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
     <None Include="assets\shaders\pyramid.vert" />
+    <None Include="assets\shaders\texturedPyramid.frag" />
+    <None Include="assets\shaders\texturedPyramid.vert" />
     <None Include="README.md" />
     <None Include="assets\shaders\texture2D.frag" />
     <None Include="assets\shaders\texture2D.vert" />

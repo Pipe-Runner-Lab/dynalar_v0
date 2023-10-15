@@ -20,6 +20,9 @@ Texture::Texture(const std::string& filePath): m_RendererID(0), m_filePath(fileP
 	{
 		// sending texture data to GPU
 		GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LocalBuffer));
+
+		// generating mipmap
+		GLCall(glGenerateMipmap(GL_TEXTURE_2D));
 	}
 	else
 	{

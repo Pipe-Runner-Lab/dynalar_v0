@@ -39,14 +39,14 @@ scene::Texture2D::Texture2D() :
 	// Initialize Uniforms
 
 	shader.Bind();
-	shader.SetUniform1i("u_Texture", 0); // setting slot
+	shader.SetUniform1i("u_Texture", 0); // setting slot in shader
 	shader.SetUniform4f("u_color", 1.0f, 0.0f, 0.0f, 1.0f);
 	shader.Unbind();
 }
 
 void scene::Texture2D::OnRender()
 {
-	texture.Bind(0); // setting slot
+	texture.Bind(0); // activating slot
 
 	shader.Bind();
 	shader.SetUniformMatrix4f("u_model", glm::translate(model_1, translation_1));
