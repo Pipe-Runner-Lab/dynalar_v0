@@ -13,7 +13,8 @@
 namespace scene {
 	class TexturePyramid : public BaseScene {
 	private:
-		Texture texture;
+		Texture texture1;
+		Texture texture2;
 		GLfloat vertices[4 * 5];
 		GLuint indices[12];
 		VertexArray va;

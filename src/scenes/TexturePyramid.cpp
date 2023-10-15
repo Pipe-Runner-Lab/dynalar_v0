@@ -3,7 +3,8 @@
 #include <glm/gtc/type_ptr.hpp>
 
 scene::TexturePyramid::TexturePyramid() :
-	texture(Texture("assets/images/brick.png")),
+	texture1(Texture("assets/images/brick.png")),
+	texture2(Texture("assets/images/dirt.png")),
 	vertices{
 		-1.0f, -1.0f, 0.0f,		0.0f, 0.0f,
 		0.0f, -1.0f, 1.0f,		0.5f, 0.0f,
@@ -48,10 +49,16 @@ void scene::TexturePyramid::OnUpdate(float deltaTime, WindowManager& windowManag
 
 void scene::TexturePyramid::OnRender()
 {
-	texture.Bind(0); // activating slot
+	texture1.Bind(0); // activating slot
 
 	shader.Bind();
 	shader.SetUniformMatrix4f("u_model", glm::translate(model, translation));
+	renderer.Draw(va, ib, shader);
+
+	texture2.Bind(0); // activating slot
+
+	shader.Bind();
+	shader.SetUniformMatrix4f("u_model", glm::translate(model, translation + glm::vec3(0.0f, 5.0f, 0.0f)));
 	renderer.Draw(va, ib, shader);
 }
 
