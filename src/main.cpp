@@ -11,6 +11,7 @@
 #include "scenes/Texture2D.h"
 #include "scenes/Pyramid.h"
 #include "scenes/TexturePyramid.h"
+#include "scenes/LightPyramid.h"
 
 static const GLint WIDTH = 1920, HEIGHT = 1080;
 
@@ -36,6 +37,7 @@ int main() {
 	sceneMenu->RegisterScene<scene::Texture2D>("2D Texture");
 	sceneMenu->RegisterScene<scene::Pyramid>("Pyramid");
 	sceneMenu->RegisterScene<scene::TexturePyramid>("Textured Pyramid");
+	sceneMenu->RegisterScene<scene::LightPyramid>("Light Pyramid");
 
 	/* Loop until the user closes the window */
 	while (!windowManager.ShouldWindowClose())

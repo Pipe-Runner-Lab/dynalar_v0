@@ -84,6 +84,12 @@
     <ClCompile Include="src\scenes\TexturePyramid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\engine\core\lights\AmbientLight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scenes\LightPyramid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\utils.h">
@@ -164,6 +170,12 @@
     <ClInclude Include="src\scenes\TexturePyramid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\engine\core\lights\AmbientLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scenes\LightPyramid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
@@ -174,6 +186,8 @@
     <None Include="assets\shaders\pyramid.vert" />
     <None Include="assets\shaders\texturedPyramid.vert" />
     <None Include="assets\shaders\texturedPyramid.frag" />
+    <None Include="assets\shaders\lightPyramid.frag" />
+    <None Include="assets\shaders\lightPyramid.vert" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE.txt" />
