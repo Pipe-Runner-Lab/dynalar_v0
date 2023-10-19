@@ -7,16 +7,16 @@
 #include "../engine/core/VertexBuffer.h"
 #include "../engine/core/Texture.h"
 #include "../engine/Renderer.h"
-#include "../engine/core/lights/AmbientLight.h"
+#include "../engine/core/lights/DirectionalLight.h"
 
 #include "BaseScene.h"
 
 namespace scene {
-	class LightPyramid : public BaseScene {
+	class DirectionalLightPyramid : public BaseScene {
 	private:
 		Texture texture1;
 		Texture texture2;
-		GLfloat vertices[4 * 5];
+		GLfloat vertices[4 * 8];
 		GLuint indices[12];
 		VertexArray va;
 		VertexBuffer vb;
@@ -27,9 +27,9 @@ namespace scene {
 		Renderer renderer;
 		glm::mat4 model;
 		glm::vec3 translation;
-		AmbientLight ambientLight;
+		DirectionalLight directionalLight;
 	public:
-		LightPyramid();
+		DirectionalLightPyramid();
 
 		void OnUpdate(float deltaTime, WindowManager& windowManager) override;
 		void OnRender() override;

@@ -84,10 +84,10 @@
     <ClCompile Include="src\scenes\TexturePyramid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\engine\core\lights\AmbientLight.cpp">
+    <ClCompile Include="src\engine\core\lights\DirectionalLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\scenes\LightPyramid.cpp">
+    <ClCompile Include="src\scenes\DirectionalLightPyramid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -170,10 +170,10 @@
     <ClInclude Include="src\scenes\TexturePyramid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\engine\core\lights\AmbientLight.h">
+    <ClInclude Include="src\engine\core\lights\DirectionalLight.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\scenes\LightPyramid.h">
+    <ClInclude Include="src\scenes\DirectionalLightPyramid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -186,8 +186,8 @@
     <None Include="assets\shaders\pyramid.vert" />
     <None Include="assets\shaders\texturedPyramid.vert" />
     <None Include="assets\shaders\texturedPyramid.frag" />
-    <None Include="assets\shaders\lightPyramid.frag" />
-    <None Include="assets\shaders\lightPyramid.vert" />
+    <None Include="assets\shaders\directionalLightPyramid.frag" />
+    <None Include="assets\shaders\directionalLightPyramid.vert" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE.txt" />

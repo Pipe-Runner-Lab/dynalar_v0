@@ -97,6 +97,7 @@ void WindowManager::HandleKeys(GLFWwindow* window, int key, int code, int action
 		}
 		else {
 			windowManager->is_camera_control_active = true;
+			windowManager->ResetMouse(); // important else cursor pos jumps when used next time
 			glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 		}
 		return;

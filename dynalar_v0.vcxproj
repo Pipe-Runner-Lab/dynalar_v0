@@ -159,8 +159,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\scenes\LightPyramid.cpp" />
-    <ClCompile Include="src\engine\core\lights\AmbientLight.cpp" />
+    <ClCompile Include="src\scenes\DirectionalLightPyramid.cpp" />
+    <ClCompile Include="src\engine\core\lights\DirectionalLight.cpp" />
     <ClCompile Include="src\scenes\BaseScene.cpp" />
     <ClCompile Include="src\scenes\ClearColor.cpp" />
     <ClCompile Include="src\engine\core\Camera.cpp" />
@@ -186,8 +186,8 @@
     <ClCompile Include="src\scenes\TexturePyramid.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\scenes\LightPyramid.h" />
-    <ClInclude Include="src\engine\core\lights\AmbientLight.h" />
+    <ClInclude Include="src\scenes\DirectionalLightPyramid.h" />
+    <ClInclude Include="src\engine\core\lights\DirectionalLight.h" />
     <ClInclude Include="src\scenes\ClearColor.h" />
     <ClInclude Include="src\engine\core\Camera.h" />
     <ClInclude Include="dependencies\STB\include\STB\stb_image.h" />
@@ -218,8 +218,8 @@
   <ItemGroup>
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
-    <None Include="assets\shaders\lightPyramid.frag" />
-    <None Include="assets\shaders\lightPyramid.vert" />
+    <None Include="assets\shaders\directionalLightPyramid.frag" />
+    <None Include="assets\shaders\directionalLightPyramid.vert" />
     <None Include="assets\shaders\pyramid.vert" />
     <None Include="assets\shaders\texturedPyramid.frag" />
     <None Include="assets\shaders\texturedPyramid.vert" />
