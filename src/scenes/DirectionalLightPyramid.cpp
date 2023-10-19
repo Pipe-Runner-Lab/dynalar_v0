@@ -1,6 +1,7 @@
 #include "DirectionalLightPyramid.h"
 
 #include <glm/gtc/type_ptr.hpp>
+#include "../engine/utils.h"
 
 scene::DirectionalLightPyramid::DirectionalLightPyramid() :
 	texture1(Texture("assets/images/brick.png")),
@@ -19,7 +20,7 @@ scene::DirectionalLightPyramid::DirectionalLightPyramid() :
 	},
 	va(VertexArray()),
 	vb(VertexBuffer(
-		vertices,
+		PopulateNormals<GLfloat>(vertices, indices, 8, 12, 0, 5),
 		sizeof(vertices)
 	)),
 	layout(VertexBufferLayout()),
