@@ -90,6 +90,9 @@
     <ClCompile Include="src\scenes\DirectionalLightPyramid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\engine\core\materials\BaseMaterial.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\utils.h">
@@ -174,6 +177,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\scenes\DirectionalLightPyramid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\core\materials\BaseMaterial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

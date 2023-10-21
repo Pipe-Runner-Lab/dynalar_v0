@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\core\materials\BaseMaterial.cpp" />
     <ClCompile Include="src\scenes\DirectionalLightPyramid.cpp" />
     <ClCompile Include="src\engine\core\lights\DirectionalLight.cpp" />
     <ClCompile Include="src\scenes\BaseScene.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="src\scenes\TexturePyramid.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\core\materials\BaseMaterial.h" />
     <ClInclude Include="src\scenes\DirectionalLightPyramid.h" />
     <ClInclude Include="src\engine\core\lights\DirectionalLight.h" />
     <ClInclude Include="src\scenes\ClearColor.h" />

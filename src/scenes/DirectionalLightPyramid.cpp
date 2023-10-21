@@ -1,7 +1,10 @@
 #include "DirectionalLightPyramid.h"
 
 #include <glm/gtc/type_ptr.hpp>
+#include <string>
 #include "../engine/utils.h"
+
+using namespace std::string_literals; // for string literal `s`
 
 scene::DirectionalLightPyramid::DirectionalLightPyramid() :
 	texture1(Texture("assets/images/brick.png")),
@@ -20,7 +23,7 @@ scene::DirectionalLightPyramid::DirectionalLightPyramid() :
 	},
 	va(VertexArray()),
 	vb(VertexBuffer(
-		PopulateNormals<GLfloat>(vertices, indices, 8, 12, 0, 5),
+		PopulateNormals<GLfloat>(vertices, indices, 32, 8, 12, 0, 5),
 		sizeof(vertices)
 	)),
 	layout(VertexBufferLayout()),
@@ -30,7 +33,12 @@ scene::DirectionalLightPyramid::DirectionalLightPyramid() :
 	renderer(Renderer(camera, glm::perspective(glm::radians(45.0f), 1920.0f / 1080.0f, 0.1f, 100.0f))),
 	model(glm::mat4(1.0f)),
 	translation(glm::vec3(0.0f, 0.0f, -20.0f)),
-	directionalLight(DirectionalLight(1.0f, glm::vec3(1.0f, 1.0f, 1.0f), 1.0f, glm::vec3(0.0f, -1.0f, 0.0f)))
+	directionalLight(DirectionalLight(1.0f, glm::vec3(1.0f, 1.0f, 1.0f), 1.0f, glm::vec3(0.0f, -1.0f, 0.0f))),
+	material_array(
+		{
+			BaseMaterial(1.0f, 32.0f)
+		}
+	)
 {
 	layout.Push<float>(3); // vertices
 	layout.Push<float>(2); // uv
@@ -63,6 +71,17 @@ void scene::DirectionalLightPyramid::OnRender()
 	shader.SetUniform1f("u_directionalLight.diffuseIntensity", directionalLight.GetDiffuseIntensity());
 	shader.SetUniform3f("u_directionalLight.direction", direction.x, direction.y, direction.z);
 	shader.SetUniformMatrix4f("u_model", glm::translate(model, translation));
+	shader.SetUniform3f("u_eyePos", camera.position.x, camera.position.y, camera.position.z);
+	for (int materialIdx = 0; materialIdx < material_array.size(); materialIdx++) {
+		shader.SetUniform1f(
+			"u_material_"s + std::to_string(materialIdx) + ".shininess",
+			material_array[materialIdx].GetShininess()
+		);
+		shader.SetUniform1f(
+			"u_material_"s + std::to_string(materialIdx) + ".specularIntensity",
+			material_array[materialIdx].GetSpecularIntensity()
+		);
+	}
 	renderer.Draw(va, ib, shader);
 
 	texture2.Bind(0); // activating slot
@@ -80,4 +99,16 @@ void scene::DirectionalLightPyramid::OnImGUIRender()
 	ImGui::SliderFloat("Ambient Intensity", &directionalLight.GetAmbientIntensity(), 0.0f, 1.0f);
 	ImGui::SliderFloat("Diffuse Intensity", &directionalLight.GetDiffuseIntensity(), 0.0f, 1.0f);
 	ImGui::SliderFloat3("Direction", glm::value_ptr(directionalLight.GetDirection()), -1.0f, 1.0f);
+	for (int materialIdx = 0; materialIdx < material_array.size(); materialIdx++) {
+		ImGui::SliderFloat(
+			("Specular Intensity "s + std::to_string(materialIdx)).c_str(), 
+			&material_array[materialIdx].GetSpecularIntensity(), 
+			0.0f, 1.0f
+		);
+		ImGui::SliderFloat(
+			("Shininess " + std::to_string(materialIdx)).c_str(), 
+			&material_array[materialIdx].GetShininess(), 
+			2.0f, 32.0f
+		);
+	}
 }
