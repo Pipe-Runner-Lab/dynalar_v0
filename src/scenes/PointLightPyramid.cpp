@@ -36,7 +36,8 @@ scene::PointLightPyramid::PointLightPyramid() :
 	translation(glm::vec3(0.0f, 0.0f, -20.0f)),
 	directionalLight(DirectionalLight(1.0f, glm::vec3(1.0f, 1.0f, 1.0f), 1.0f, glm::vec3(0.0f, -1.0f, 0.0f))),
 	pointLight_array({
-			PointLight(1.0f, glm::vec3(0.0f, 1.0f, 0.0f), 1.0f, glm::vec3(-4.0f, 0.0f, 0.0f), Attenuation{0.3f, 0.2f, 0.1f})
+			PointLight(0.1f, glm::vec3(0.0f, 1.0f, 0.0f), 0.7f, glm::vec3(-2.0f, 0.0f, -19.0f), Attenuation{0.1f, 0.2f, 0.3f}),
+			PointLight(0.2f, glm::vec3(1.0f, 0.0f, 0.0f), 0.5f, glm::vec3(2.0f, 1.0f, -19.5f), Attenuation{0.1f, 0.3f, 0.3f})
 		}
 	),
 	material_array(
@@ -90,18 +91,6 @@ void scene::PointLightPyramid::OnRender()
 			color.x, color.y, color.z
 		);
 		shader.SetUniform1f(
-			"u_pointLightArray["s + std::to_string(pointLightIdx) + "].attenuation.exponent_coef",
-			attenuation.exponent_coef
-		);
-		shader.SetUniform1f(
-			"u_pointLightArray["s + std::to_string(pointLightIdx) + "].attenuation.linear_coef",
-			attenuation.linear_coef
-		);
-		shader.SetUniform1f(
-			"u_pointLightArray["s + std::to_string(pointLightIdx) + "].attenuation.constant_coef",
-			attenuation.constant_coef
-		);
-		shader.SetUniform1f(
 			"u_pointLightArray["s + std::to_string(pointLightIdx) + "].base.ambientIntensity",
 			pointLight_array[pointLightIdx].GetAmbientIntensity()
 		);
@@ -112,6 +101,18 @@ void scene::PointLightPyramid::OnRender()
 		shader.SetUniform3f(
 			"u_pointLightArray["s + std::to_string(pointLightIdx) + "].position",
 			position.x, position.y, position.z
+		);
+		shader.SetUniform1f(
+			"u_pointLightArray["s + std::to_string(pointLightIdx) + "].attenuation.exponent_coef",
+			attenuation.exponent_coef
+		);
+		shader.SetUniform1f(
+			"u_pointLightArray["s + std::to_string(pointLightIdx) + "].attenuation.linear_coef",
+			attenuation.linear_coef
+		);
+		shader.SetUniform1f(
+			"u_pointLightArray["s + std::to_string(pointLightIdx) + "].attenuation.constant_coef",
+			attenuation.constant_coef
 		);
 	}
 

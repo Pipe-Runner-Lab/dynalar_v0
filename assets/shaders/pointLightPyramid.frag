@@ -73,19 +73,23 @@ vec4 CalculateDirectionalLight(DirectionalLight directionalLight) {
 	return CalculateLightViaDirection(directionalLight.base, directionalLight.direction);
 }
 
-vec4 CalculatePointLight(PointLight pointLight, vec3 suface_coord) {
-	vec3 direction = normalize(suface_coord - pointLight.position);
-	float dist = length(suface_coord - pointLight.position);
-	float attenuation = pow(dist, 2) * pointLight.attenuation.exponent_coef + 
-	dist * pointLight.attenuation.linear_coef + 
-	pointLight.attenuation.constant_coef; // ax^2 + bx + c
+vec4 CalculatePointLight(PointLight pointLight) {
+	vec3 diff = v_surface_coord - pointLight.position;
+	vec3 direction = normalize(diff);
+	float distance_from_surface = length(diff);
+	float attenuation = (
+		distance_from_surface * distance_from_surface * pointLight.attenuation.exponent_coef + 
+		distance_from_surface * pointLight.attenuation.linear_coef + 
+		pointLight.attenuation.constant_coef
+	); // ax^2 + bx + c
 	return CalculateLightViaDirection(pointLight.base, direction) / attenuation; // 1/att
 }
 
 void main() {
-	vec4 finalColor = CalculateDirectionalLight(u_directionalLight);
+	vec4 finalColor = vec4(0.0, 0.0, 0.0, 1.0);
+	finalColor.xyz += CalculateDirectionalLight(u_directionalLight).xyz;
 	for(int i = 0; i < u_num_pointLights; i++){
-		finalColor += CalculatePointLight(u_pointLightArray[i], v_surface_coord);
+		finalColor.xyz += CalculatePointLight(u_pointLightArray[i]).xyz;
 	}
 
 	colour = texture(u_Texture, v_uv) * finalColor;

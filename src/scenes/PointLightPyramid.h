@@ -31,7 +31,7 @@ namespace scene {
 		glm::mat4 model;
 		glm::vec3 translation;
 		DirectionalLight directionalLight;
-		std::array<PointLight, 1> pointLight_array;
+		std::array<PointLight, 2> pointLight_array;
 		std::array<BaseMaterial, 1> material_array;
 	public:
 		PointLightPyramid();
