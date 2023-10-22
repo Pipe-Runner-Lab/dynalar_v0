@@ -83,12 +83,6 @@ inline T* PopulateNormals(T* vertices, GLuint* indices, unsigned int vertexCount
 		vertices[layoutIdx + normalOffsetCount] = tempVector.x;
 		vertices[layoutIdx + normalOffsetCount + 1] = tempVector.y;
 		vertices[layoutIdx + normalOffsetCount + 2] = tempVector.z;
-
-		std::cout
-			<< vertices[layoutIdx + normalOffsetCount] << ", "
-			<< vertices[layoutIdx + normalOffsetCount + 1] << ", "
-			<< vertices[layoutIdx + normalOffsetCount + 2]
-			<< std::endl;
 	}
 
 	return vertices;

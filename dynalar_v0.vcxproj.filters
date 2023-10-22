@@ -93,6 +93,12 @@
     <ClCompile Include="src\engine\core\materials\BaseMaterial.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\engine\core\lights\PointLight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scenes\PointLightPyramid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\utils.h">
@@ -182,6 +188,12 @@
     <ClInclude Include="src\engine\core\materials\BaseMaterial.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\engine\core\lights\PointLight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scenes\PointLightPyramid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
@@ -194,6 +206,8 @@
     <None Include="assets\shaders\texturedPyramid.frag" />
     <None Include="assets\shaders\directionalLightPyramid.frag" />
     <None Include="assets\shaders\directionalLightPyramid.vert" />
+    <None Include="assets\shaders\pointLightPyramid.vert" />
+    <None Include="assets\shaders\pointLightPyramid.frag" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE.txt" />

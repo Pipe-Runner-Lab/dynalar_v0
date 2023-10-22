@@ -159,6 +159,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\scenes\PointLightPyramid.cpp" />
+    <ClCompile Include="src\engine\core\lights\PointLight.cpp" />
     <ClCompile Include="src\engine\core\materials\BaseMaterial.cpp" />
     <ClCompile Include="src\scenes\DirectionalLightPyramid.cpp" />
     <ClCompile Include="src\engine\core\lights\DirectionalLight.cpp" />
@@ -187,6 +189,8 @@
     <ClCompile Include="src\scenes\TexturePyramid.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\scenes\PointLightPyramid.h" />
+    <ClInclude Include="src\engine\core\lights\PointLight.h" />
     <ClInclude Include="src\engine\core\materials\BaseMaterial.h" />
     <ClInclude Include="src\scenes\DirectionalLightPyramid.h" />
     <ClInclude Include="src\engine\core\lights\DirectionalLight.h" />
@@ -222,6 +226,8 @@
     <None Include=".gitignore" />
     <None Include="assets\shaders\directionalLightPyramid.frag" />
     <None Include="assets\shaders\directionalLightPyramid.vert" />
+    <None Include="assets\shaders\pointLightPyramid.frag" />
+    <None Include="assets\shaders\pointLightPyramid.vert" />
     <None Include="assets\shaders\pyramid.vert" />
     <None Include="assets\shaders\texturedPyramid.frag" />
     <None Include="assets\shaders\texturedPyramid.vert" />

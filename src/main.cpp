@@ -12,6 +12,7 @@
 #include "scenes/Pyramid.h"
 #include "scenes/TexturePyramid.h"
 #include "scenes/DirectionalLightPyramid.h"
+#include "scenes/PointLightPyramid.h"
 
 static const GLint WIDTH = 1920, HEIGHT = 1080;
 
@@ -38,6 +39,7 @@ int main() {
 	sceneMenu->RegisterScene<scene::Pyramid>("Pyramid");
 	sceneMenu->RegisterScene<scene::TexturePyramid>("Textured Pyramid");
 	sceneMenu->RegisterScene<scene::DirectionalLightPyramid>("Directional Light Pyramid");
+	sceneMenu->RegisterScene<scene::PointLightPyramid>("Point Light Pyramid");
 
 	/* Loop until the user closes the window */
 	while (!windowManager.ShouldWindowClose())
