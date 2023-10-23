@@ -3,7 +3,6 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <string>
 #include "../engine/utils.h"
-#include <iostream>
 
 using namespace std::string_literals; // for string literal `s`
 
@@ -56,8 +55,6 @@ scene::PointLightPyramid::PointLightPyramid() :
 	shader.Bind();
 	shader.SetUniform1i("u_Texture", 0); // setting slot in shader
 	shader.Unbind();
-
-	std::cout << pointLight_array.size() << std::endl;
 }
 
 void scene::PointLightPyramid::OnUpdate(float deltaTime, WindowManager& windowManager)
