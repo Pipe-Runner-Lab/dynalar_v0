@@ -14,11 +14,14 @@
 #include "scenes/DirectionalLightPyramid.h"
 #include "scenes/PointLightPyramid.h"
 #include "scenes/SpotLightPyramid.h"
+#include "ASSIMP/Importer.hpp"
 
 static const GLint WIDTH = 1920, HEIGHT = 1080;
 
 
 int main() {
+	Assimp::Importer importer;
+
 	WindowManager windowManager = WindowManager(WIDTH, HEIGHT);
 
 	/* Initialize ImGui */
