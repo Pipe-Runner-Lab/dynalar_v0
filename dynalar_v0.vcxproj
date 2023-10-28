@@ -159,6 +159,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\scenes\ModelImport.cpp" />
+    <ClCompile Include="src\engine\core\models\MeshGroup.cpp" />
     <ClCompile Include="src\scenes\SpotLightPyramid.cpp" />
     <ClCompile Include="src\engine\core\lights\SpotLigh.cpp" />
     <ClCompile Include="src\scenes\PointLightPyramid.cpp" />
@@ -191,6 +193,9 @@
     <ClCompile Include="src\scenes\TexturePyramid.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="src\scenes\ModelImport.h" />
+    <ClInclude Include="src\engine\core\models\MeshGroup.h" />
     <ClInclude Include="src\scenes\SpotLightPyramid.h" />
     <ClInclude Include="src\engine\core\lights\SpotLigh.h" />
     <ClInclude Include="src\scenes\PointLightPyramid.h" />
@@ -230,6 +235,8 @@
     <None Include=".gitignore" />
     <None Include="assets\shaders\directionalLightPyramid.frag" />
     <None Include="assets\shaders\directionalLightPyramid.vert" />
+    <None Include="assets\shaders\model.frag" />
+    <None Include="assets\shaders\model.vert" />
     <None Include="assets\shaders\pointLightPyramid.frag" />
     <None Include="assets\shaders\pointLightPyramid.vert" />
     <None Include="assets\shaders\pyramid.vert" />
@@ -243,6 +250,9 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="dynalar_v0.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

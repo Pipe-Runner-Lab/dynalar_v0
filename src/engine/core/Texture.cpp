@@ -2,7 +2,7 @@
 #include <iostream>
 #include <STB/stb_image.h>
 
-Texture::Texture(const std::string& filePath): m_RendererID(0), m_filePath(filePath), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0)
+Texture::Texture(const std::string& filePath, bool hasAlpha): m_RendererID(0), m_filePath(filePath), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0)
 {
 	GLCall(glGenTextures(1, &m_RendererID));
 	//Bind(0, false);
@@ -18,8 +18,15 @@ Texture::Texture(const std::string& filePath): m_RendererID(0), m_filePath(fileP
 	m_LocalBuffer = stbi_load(filePath.c_str(), &m_Width, &m_Height, &m_BPP, 4); // desired channel 4 since RGBA
 	if (m_LocalBuffer)
 	{
-		// sending texture data to GPU
-		GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LocalBuffer));
+		if (hasAlpha) {
+			// sending texture data to GPU
+			GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_RGBA, GL_UNSIGNED_BYTE, m_LocalBuffer));
+		}
+		else {
+			// sending texture data to GPU
+			GLCall(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, m_Width, m_Height, 0, GL_RGB, GL_UNSIGNED_BYTE, m_LocalBuffer));
+		}
+		
 
 		// generating mipmap
 		GLCall(glGenerateMipmap(GL_TEXTURE_2D));
@@ -27,6 +34,7 @@ Texture::Texture(const std::string& filePath): m_RendererID(0), m_filePath(fileP
 	else
 	{
 		std::cout << "Failed to load texture" << std::endl;
+		throw;
 	}
 	
 	Unbind();

@@ -105,6 +105,12 @@
     <ClCompile Include="src\scenes\SpotLightPyramid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\engine\core\models\MeshGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\scenes\ModelImport.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\utils.h">
@@ -206,6 +212,15 @@
     <ClInclude Include="src\scenes\SpotLightPyramid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\engine\core\models\MeshGroup.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scenes\ModelImport.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
@@ -222,8 +237,15 @@
     <None Include="assets\shaders\pointLightPyramid.frag" />
     <None Include="assets\shaders\spotLightPyramid.vert" />
     <None Include="assets\shaders\spotLightPyramid.frag" />
+    <None Include="assets\shaders\model.vert" />
+    <None Include="assets\shaders\model.frag" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="dynalar_v0.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

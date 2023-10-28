@@ -14,14 +14,12 @@
 #include "scenes/DirectionalLightPyramid.h"
 #include "scenes/PointLightPyramid.h"
 #include "scenes/SpotLightPyramid.h"
-#include "ASSIMP/Importer.hpp"
+#include "scenes/ModelImport.h"
 
 static const GLint WIDTH = 1920, HEIGHT = 1080;
 
 
 int main() {
-	Assimp::Importer importer;
-
 	WindowManager windowManager = WindowManager(WIDTH, HEIGHT);
 
 	/* Initialize ImGui */
@@ -45,6 +43,7 @@ int main() {
 	sceneMenu->RegisterScene<scene::DirectionalLightPyramid>("Directional Light Pyramid");
 	sceneMenu->RegisterScene<scene::PointLightPyramid>("Point Light Pyramid");
 	sceneMenu->RegisterScene<scene::SpotLightPyramid>("Spot Light Pyramid");
+	sceneMenu->RegisterScene<scene::ModelImport>("Model Import");
 
 	/* Loop until the user closes the window */
 	while (!windowManager.ShouldWindowClose())

@@ -13,7 +13,7 @@ private:
 	int m_Width, m_Height, m_BPP; // BPP => Bits Per Pixel 
 
 public:
-	Texture(const std::string& filePath);
+	Texture(const std::string& filePath, bool hasAlpha = true);
 	~Texture();
 
 	void Bind(GLuint slot = 0) const;
