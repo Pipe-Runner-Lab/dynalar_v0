@@ -32,8 +32,12 @@ namespace scene {
 		std::array<PointLight, 2> pointLight_array;
 		std::array<SpotLight, 1> spotLight_array;
 		std::array<BaseMaterial, 1> material_array;
+		VertexArray* ground_va_ptr;
+		IndexBuffer* ground_ib_ptr;
+		Texture ground_texture;
 	public:
 		ModelImport();
+		~ModelImport();
 
 		void OnUpdate(float deltaTime, WindowManager& windowManager) override;
 		void OnRender() override;

@@ -29,7 +29,8 @@ scene::ModelImport::ModelImport() :
 		{
 			BaseMaterial(1.0f, 32.0f)
 		}
-	)
+	),
+	ground_texture(Texture("assets/images/dirt.png"))
 {
 	for (size_t meshIdx = 0; meshIdx < meshGroup.m_MeshList.size(); meshIdx++) {
 		Mesh mesh = meshGroup.m_MeshList[meshIdx];
@@ -54,13 +55,38 @@ scene::ModelImport::ModelImport() :
 		ib_list.push_back(ib);
 	}
 
+	// ground
+	float ground_vertices[] = {
+		10.0f, -1.1f, 10.0f,		1.0f, 0.0f,		0.0f, 1.0f, 0.0f,
+		10.0f, -1.1f, -10.0f,		1.0f, 1.0f,		0.0f, 1.0f, 0.0f,
+		-10.0f, -1.1f, -10.0f,		0.0f, 1.0f,		0.0f, 1.0f, 0.0f,
+		-10.0f, -1.1f, 10.0f,		0.0f, 0.0f,		0.0f, 1.0f, 0.0f
+	};
+	ground_va_ptr = new VertexArray();
+	VertexBuffer ground_vb = VertexBuffer(ground_vertices, sizeof(ground_vertices));
+	VertexBufferLayout layout = VertexBufferLayout();
+	layout.Push<float>(3); // vertices
+	layout.Push<float>(2); // uv
+	layout.Push<float>(3); // normal
+	ground_va_ptr->AddBuffer(ground_vb, layout);
+	
+	unsigned int ground_indices[] = {
+		0, 1, 2,
+		0, 2, 3
+	};
+	ground_ib_ptr = new IndexBuffer(ground_indices, 6);
+
 	// Initialize Uniforms
 
 	shader.Bind();
 	shader.SetUniform1i("u_Texture", 0); // setting slot in shader (activating)
 	shader.Unbind();
+}
 
-	model = glm::scale(model, glm::vec3(0.006f, 0.006f, 0.006f));
+scene::ModelImport::~ModelImport()
+{
+	delete ground_va_ptr;
+	delete ground_ib_ptr;
 }
 
 void scene::ModelImport::OnUpdate(float deltaTime, WindowManager& windowManager)
@@ -79,7 +105,8 @@ void scene::ModelImport::OnRender()
 	shader.SetUniform3f("u_directionalLight.base.color", color.r, color.g, color.b);
 	shader.SetUniform1f("u_directionalLight.base.diffuseIntensity", directionalLight.GetDiffuseIntensity());
 	shader.SetUniform3f("u_directionalLight.direction", direction.x, direction.y, direction.z);
-	shader.SetUniformMatrix4f("u_model", glm::translate(model, translation));
+	glm::mat4 intermediate_model = glm::scale(model, glm::vec3(0.006f, 0.006f, 0.006f));
+	shader.SetUniformMatrix4f("u_model", intermediate_model);
 	shader.SetUniform3f("u_eyePos", camera.position.x, camera.position.y, camera.position.z);
 
 	shader.SetUniform1i("u_num_pointLights", pointLight_array.size());
@@ -173,6 +200,7 @@ void scene::ModelImport::OnRender()
 	}
 
 	for (size_t idx = 0; idx < ib_list.size(); idx++) {
+
 		unsigned int materialIndex = meshGroup.m_MeshToTexture[idx];
 
 		// each mesh is bound to one texture of any type
@@ -184,6 +212,10 @@ void scene::ModelImport::OnRender()
 
 		renderer.Draw(va_list[idx], ib_list[idx], shader);
 	}
+
+	ground_texture.Bind(0);
+	shader.SetUniformMatrix4f("u_model", glm::translate(model, translation));
+	renderer.Draw(*ground_va_ptr, *ground_ib_ptr, shader);
 }
 
 void scene::ModelImport::OnImGUIRender()

@@ -18,6 +18,7 @@ MeshGroup::MeshGroup(std::string filePath)
 	}
 
 	LoadNode(scene->mRootNode, scene);
+	LoadMaterials(scene);
 }
 
 MeshGroup::~MeshGroup()
